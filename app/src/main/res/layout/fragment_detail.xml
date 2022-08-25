@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.shiftkey.codingchallenge.ui.details.DetailsViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical">
+
+        <TextView
+            android:id="@+id/specialty"
+            style="@style/TextAppearance.MaterialComponents.Headline4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.shift.localizedSpecialty}"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Certified Nursing Aide" />
+
+        <TextView
+            android:id="@+id/from"
+            style="@style/TextAppearance.MaterialComponents.Subtitle1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@{`From: ` + viewModel.shift.normalizedStartDateTime}"
+            app:layout_constraintTop_toBottomOf="@id/specialty"
+            tools:text="Certified Nursing Aide" />
+
+        <TextView
+            android:id="@+id/to"
+            style="@style/TextAppearance.MaterialComponents.Subtitle1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@{`To: ` + viewModel.shift.normalizedEndDateTime}"
+            app:layout_constraintTop_toBottomOf="@id/from"
+            tools:text="Certified Nursing Aide" />
+
+        <TextView
+            android:id="@+id/facility"
+            style="@style/TextAppearance.MaterialComponents.Headline6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@{viewModel.shift.facilityType}"
+            app:layout_constraintTop_toBottomOf="@id/to"
+            tools:text="Certified Nursing Aide" />
+
+        <TextView
+            android:id="@+id/type"
+            style="@style/TextAppearance.MaterialComponents.Subtitle1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@{`Type: ` + viewModel.shift.shiftKind}"
+            app:layout_constraintTop_toBottomOf="@id/facility"
+            tools:text="Certified Nursing Aide" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/covid"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/purple_200"
+            android:visibility="@{viewModel.shift.covid}"
+            android:layout_margin="5dp"
+            app:cardCornerRadius="5dp"
+            app:layout_constraintEnd_toStartOf="@+id/premium"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/type">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="6dp"
+                android:text="COVID"
+                android:textSize="17sp" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/premium"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/teal_200"
+            android:visibility="@{viewModel.shift.premiumRate}"
+            android:layout_margin="5dp"
+            app:cardCornerRadius="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/covid"
+            app:layout_constraintTop_toBottomOf="@id/type">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="6dp"
+                android:text="PREMIUM"
+                android:textSize="17sp" />
+        </com.google.android.material.card.MaterialCardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

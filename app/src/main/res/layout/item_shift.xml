@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="itemViewData"
+            type="com.shiftkey.codingchallenge.domain.model.ShiftDto" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+        <TextView
+            android:id="@+id/shift_time"
+            android:text="@{itemViewData.normalizedStartDateTime.concat(` - `).concat(itemViewData.normalizedEndDateTime)}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/shift_rate"/>
+        <TextView
+            android:id="@+id/shift_facility"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{itemViewData.facilityType}"
+            app:layout_constraintTop_toBottomOf="@id/shift_time"
+            app:layout_constraintStart_toStartOf="parent"/>
+        <TextView
+            android:id="@+id/shift_speciality"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{itemViewData.localizedSpecialty}"
+            app:layout_constraintTop_toBottomOf="@id/shift_facility"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="Nurse"/>
+        <TextView
+            android:id="@+id/shift_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PREMIUM"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="@{itemViewData.premiumRate}"
+            tools:visibility="gone"/>
+        <TextView
+            android:id="@+id/shift_skill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{itemViewData.skill}"
+            app:layout_constraintTop_toBottomOf="@id/shift_speciality"
+            app:layout_constraintStart_toStartOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
